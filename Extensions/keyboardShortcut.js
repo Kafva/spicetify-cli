@@ -45,8 +45,8 @@
 	registerBind("G", false, false, false, appScrollTop, null);
 	registerBind("G", false, true, false, appScrollBottom, null);
 
-	// f to open search page
-	registerBind("F", false, false, false, openSearchPage, null);
+	// / to open search page
+	registerBind("/", false, false, false, openSearchPage, null);
 	
 	// F to full-screen
 	registerBind("F", false, true, false, clickSelector, ".main-topBar-button[title='Full App Display']");
@@ -75,11 +75,12 @@
 	registerBind("Q", false, true, false, goToAlbumOfCurrentTrack, null);
 	registerBind("W", false, false, false, focusPlaylist, null);
 
-	// ':' or '.' to show keyboard combinations for clicking elements
+	// ':', '.' or 'F' to show keyboard combinations for clicking elements
 	// Esc to cancel
 	const vim = new VimBind();
 	registerBind(".", false, false, false, vim.activate.bind(vim), null);
 	registerBind(":", false, true, false, vim.activate.bind(vim), null);
+	registerBind("F", false, false, false, vim.activate.bind(vim), null);
 	vim.setCancelKey("ESCAPE");
 
 	function goToPlaylist(name) {
