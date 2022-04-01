@@ -46,7 +46,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(var(--fad-scale));
+    /* The '#fad-foreground' gets an incorrect scale value for some reason
+       style="--fad-scale:0.1;"
+       transform: scale(var(--fad-scale)); 
+    */
 }
 #fad-art-image {
     position: relative;
