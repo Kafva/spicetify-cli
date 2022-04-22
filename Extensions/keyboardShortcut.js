@@ -1,11 +1,8 @@
-//@ts-check
-
 // NAME: Keyboard Shortcut
 // AUTHOR: khanhas
 // DESCRIPTION: Register a few more keybinds to support keyboard-driven navigation in Spotify client.
 
 /// <reference path="../globals.d.ts" />
-
 (function KeyboardShortcut() {
     if (!Spicetify.Keyboard) {
         setTimeout(KeyboardShortcut, 1000);
@@ -71,10 +68,6 @@
     registerBind("Z", false, false, false, goToPlaylist, "⽉");
     registerBind("Z", false, true, false, goToPlaylist, "🌗");
 
-    // TODO:
-    registerBind("Q", false, true, false, goToAlbumOfCurrentTrack, null);
-    registerBind("W", false, false, false, focusPlaylist, null);
-
     // ':', '.' or 'F' to show keyboard combinations for clicking elements
     // Esc to cancel
     const vim = new VimBind();
@@ -92,20 +85,6 @@
                 Spicetify.Player.playUri(`spotify:playlist:${playlist_id}`, {}, {});
             }
         });
-    }
-
-    function focusPlaylist() {
-        // TODO: Focus current song in playlist
-    }
-
-    function goToAlbumOfCurrentTrack() {
-        // TODO: Or we can just double click the bottom left icon
-        console.log(Spicetify.Player.data.track.metadata.album_uri);
-    }
-
-    function fullTextSearch() {
-        // TODO
-        console.log("/");
     }
 
     function appScroll(step) {
