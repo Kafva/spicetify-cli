@@ -35,7 +35,7 @@ echo "FETCHING Version $tag"
 download_uri=$releases_uri/download/v$tag/spicetify-$tag-$target.tar.gz
 
 # locations
-spicetify_install="$HOME/.spicetify"
+spicetify_install="$HOME/.config/spicetify"
 exe="$spicetify_install/spicetify"
 tar="$spicetify_install/spicetify.tar.gz"
 
@@ -63,19 +63,7 @@ EOINFO
 }
 
 check() {
-	local path="export PATH=\$PATH:$spicetify_install"
-	local shellrc=$HOME/$1
-	if [ -f $shellrc ]; then
-		if ! grep -q $spicetify_install $shellrc; then
-			echo "APPENDING $spicetify_install to PATH in $shellrc"
-			echo ${2:-$path} >> $shellrc
-			echo "Restart your shell to have spicetify in your PATH."
-		else
-			echo "spicetify path already set in $shellrc, continuing..."
-		fi
-	else
-		notfound
-	fi
+  :
 }
 
 case $SHELL in
