@@ -1,6 +1,7 @@
 # Executables
 bin/
 *.exe
+spicetify-cli
 
 # MacOS
 .DS_Store

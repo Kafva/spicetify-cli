@@ -61,8 +61,8 @@
     registerBind("ARROW_DOWN", false, true, false, decreaseVolume, null);
 
     // Go to Home or Library
-    registerBind("M", false, false, false, clickSelector, ".main-navBar-navBarItem[data-id='/'] a");
-    registerBind("M", false, true, false, clickSelector, ".main-navBar-navBarItem[data-id='/collection'] a");
+    registerBind("M", false, false, false, clickSelector, "a.main-navBar-navBarLink[href='/']");
+    registerBind("M", false, true, false, clickSelector, "a.main-navBar-navBarLink[href='/collection']");
 
     // Go to specific playlist and automatically start playing them
     registerBind("Z", false, false, false, goToPlaylist, "⽉");
@@ -77,8 +77,8 @@
     vim.setCancelKey("ESCAPE");
 
     function goToPlaylist(name) {
-        document.querySelectorAll(".standalone-ellipsis-one-line.main-rootlist-rootlistItemLink").forEach((anchor) => {
-            if (anchor.querySelector("span").innerText == name) {
+        document.querySelectorAll("ul .standalone-ellipsis-one-line").forEach((anchor) => {
+            if (anchor.querySelector("span")?.innerText == name) {
                 anchor.click();
                 // Start playing based on the playlist ID in the href attribute
                 const playlist_id = anchor.href.substr(anchor.href.lastIndexOf("/") + 1);
@@ -213,16 +213,16 @@ function VimBind() {
     vimOverlay.style.display = "none";
     vimOverlay.innerHTML = `<style>
 .vim-key {
-	position: fixed;
-	padding: 3px 6px;
-	background-color: black;
-	border-radius: 3px;
-	border: solid 2px white;
-	color: white;
-	text-transform: lowercase;
-	line-height: normal;
-	font-size: 14px;
-	font-weight: 500;
+  position: fixed;
+  padding: 3px 6px;
+  background-color: black;
+  border-radius: 3px;
+  border: solid 2px white;
+  color: white;
+  text-transform: lowercase;
+  line-height: normal;
+  font-size: 14px;
+  font-weight: 500;
 }
 </style>`;
     document.body.append(vimOverlay);
