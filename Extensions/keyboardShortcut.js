@@ -23,6 +23,16 @@
     const decreaseVolume = () => Spicetify.Platform?.PlaybackAPI.lowerVolume();
 
     const clickSelector = (selector) => document.querySelector(selector).click();
+    const clickSelectors = (selectors) => {
+        for (let s of selectors) {
+            let b = document.querySelector(s);
+            if (b) {
+                // Break after the first match
+                b.click();
+                return;
+            }
+        }
+    };
     const getMainContainer = () => document.querySelector(".Root__main-view .os-viewport");
     const skipForward = () => Spicetify.Player.skipForward(10 * 1000);
     const skipBack = () => Spicetify.Player.skipBack(10 * 1000);
@@ -53,8 +63,17 @@
     registerBind("L", false, true, false, skipForward, null);
 
     // Shift + Arrow Left Next and Shift + Arrow Right  Previous Song
-    registerBind("ARROW_RIGHT", false, true, false, clickSelector, ".main-skipForwardButton-button");
-    registerBind("ARROW_LEFT", false, true, false, clickSelector, ".main-skipBackButton-button");
+    // We include fallback selectors for older Spotify versions
+    // prettier-ignore
+    registerBind("ARROW_RIGHT", false, true, false, clickSelectors, [
+      ".main-skipForwardButton-button",
+      "button[aria-label='Next']"
+    ]);
+    // prettier-ignore
+    registerBind("ARROW_LEFT", false, true, false, clickSelectors, [
+      ".main-skipBackButton-button",
+      "button[aria-label='Previous']"
+    ]);
 
     // Shift + Arrow Up Increase Volume Shift + Arrow Down Decrease Volume
     registerBind("ARROW_UP", false, true, false, increaseVolume, null);
